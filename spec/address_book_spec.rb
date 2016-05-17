@@ -1,7 +1,7 @@
 require_relative '../models/address_book'
 
 RSpec.describe AddressBook do
-  let(:book) { AddressBook.new}
+  let(:book) { AddressBook.new }
 
 
   def check_entry(entry, expected_name, expected_number, expected_email)
