@@ -120,4 +120,11 @@ context "importing from entries_2.csv"
     end
   end
 
+  context "#destroy_all_entries" do
+    it "should delte all entries" do
+      book.import_from_csv("entries.csv")
+      book.destroy_all_entries
+      expect(book.entries.size).to eq 0
+    end
+  end
 end
