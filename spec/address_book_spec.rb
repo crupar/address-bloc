@@ -43,41 +43,20 @@ RSpec.describe AddressBook do
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
   end
+
+  describe "#binary_search" do
+    it "searches AddressBook for a non-existant entry" do
+      book.import_from_csv("entries.csv")
+      entry = book.binary_search("Dan")
+      expect(entry).to be_nil
+    end
+
+  it "searches AddressBook for Bill" do
+    book.import_from_csv("entries.csv")
+    entry = book.binary_search("Bill")
+    expext(entry).to be_a Entry
+    check_entry(entry, "Bill", "555-555-4853", "bill@blocmail.com")
+  end
+
+  end
 end
-
-
-
-=begin
-    it "initalizes entries as an array" do
-      expect(book.entries).to be_an(Array)
-    end
-
-    it "initializes entries as empty" do
-      expect(book.entries.size).to eq(0)
-    end
-  end
-
-  describe "#add_entry" do
-    it "adds only one entry to the address book" do
-      book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
-      expect(book.entries.size).to eq(1)
-    end
-
-    it "adds the correct information to entries" do
-      book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
-      new_entry = book.entries[0]
-
-      expect(new_entry.name).to eq('Ada Lovelace')
-      expect(new_entry.phone_number).to eq ('010.012.1815')
-      expect(new_entry.email).to eq('augusta.king@lovelace.com')
-    end
-
-    describe "#remove_entry" do
-      it "deletes only one entry to the address book" do
-        book = AddressBook.new
-        book.remove_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
-        expect(book.entries.size).to eq(0)
-      end
-    end
-  end
-=end
